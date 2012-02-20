@@ -1,5 +1,10 @@
 ===
-test
+Intro:
 
+This repo implements the dynamic programming algorithm described in James Glenn's May 2006 paper "An Optimal Strategy for Yahtzee". 
+The strategy is the version without Yahtzee bonus.
+
+An online version of the same strategy can be found here (developed by Tom Verhoeff, Erik Scheffers)
+http://www-set.win.tue.nl/~wstomv/misc/yahtzee/yptd.php
 
 ===
