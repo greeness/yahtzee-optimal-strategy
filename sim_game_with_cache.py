@@ -6,7 +6,6 @@ import json
 from combinatorics_class import *
 from widget import load_expectation, get_next_state, get_state_big_mask
 from widget import get_expected_score
-from random import randint
 import logging
 logging.basicConfig(format='%(message)s',level=logging.INFO)
 logger = logging.getLogger('dice_bot')
@@ -38,11 +37,11 @@ def merge(r1, r2):
     return tuple(sorted(r))
 
 def load_optimal_strategy():
-    id_to_state_json = json.load(open('id_to_state.json'))
+    id_to_state_json = json.load(open('./data/id_to_state.json'))
     for k,v in id_to_state_json.iteritems():
         state_to_id[int(v)] = int(k)
 
-    action_blob.fromfile(file('options.dat'),N_STATES*N_BYTES)
+    action_blob.fromfile(file('./data/options.dat'),N_STATES*N_BYTES)
     
 def pass_rand_test(diff_level):
     if randint(DIFF_MIN, DIFF_MAX) <= diff_level:
@@ -242,8 +241,8 @@ if __name__ == '__main__':
         t1 = datetime.now()
         tp=[]   
         for trial in range(n_trial):
-            #t = run_game(trial, difficulty)
-            t = run_game_two_players(trial, difficulty)
+            t = run_game(trial, difficulty)
+            #t = run_game_two_players(trial, difficulty)
             tp.append(t)
             logger.warning("diff=%d, %f, (%f, %f)", difficulty, t, numpy.mean(tp), numpy.std(tp))
         t2 = datetime.now()

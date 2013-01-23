@@ -88,18 +88,31 @@ def get_all_cases_with_N_available_categories(n):
     n_used = 13-n
     case = set()
     for s in reachable_set:
+        # first we unzip the reachable upper states
+        # upper_score: total score in upper section
+        # upper_used_mask: 100111, e.g., we used 1,2,3 and 6, not 4 or 5
         upper_score, upper_used_mask  = s
         upper_used = get_set_out_of_mask(upper_used_mask)
+
         lower_used = n_used - len(upper_used)
         
         if lower_used < 0 or lower_used > 7:
             continue
-        mask_base = 0b0000000111111 & upper_used_mask
+        # second we construct mask
+        # the rightmost 6 bits are for upper section
+        # the leftmost 7 bits are for lower section, namely, 3K,4K,FH,SS,LS,Chance,Yahtzee
+        mask_base = 0b00000000111111 & upper_used_mask
+        
+        # iterate all combinations of the lower section
         for com in combinations(range(6,13), lower_used):
+            # com: tuples containing finished categories, e.g., (7,8,10,11)
+            #   that is, we used 4K,FH,LS,Chance already
             mask = mask_base
             for c in com:
                 mask |= 1<<c
             case.add((mask, upper_score))
+
+            
     return case
 
 if __name__ == '__main__':

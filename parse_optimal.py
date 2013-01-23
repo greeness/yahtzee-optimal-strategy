@@ -1,13 +1,12 @@
 from scoring import Category
 from array import array
 
-log = open('small_T')
+log = open('./data/small_T')
 idx = -1
 
 optimal = []
 def to_id(name):
     return Category.CATEGORY_NAME_TO_ID[name]
-
 
 kept_option = array('B')
 id_to_state = {}
@@ -85,9 +84,9 @@ for line in log:
             
         
     idx += 1
-kept_option.tofile(open('options.dat','w+'))
+kept_option.tofile(open('./data/options.dat','w+'))
 import json
-json.dump(id_to_state, open('id_to_state.json','w+'),indent=2)
+json.dump(id_to_state, open('./data/id_to_state.json','w+'),indent=2)
 
 print 'done'
     

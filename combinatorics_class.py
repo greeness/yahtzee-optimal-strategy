@@ -64,6 +64,7 @@ for i,t in enumerate(combinations_with_replacement(dice,5)):
 edge_prob = get_edges_and_prob()
 reverse_edge = reverse_dict(edge_prob)
 
+
 #retro_back = get_retro_back()
 single_throw = throw_dice(tuple())
 
@@ -74,7 +75,7 @@ for cat_name in Category.CATEGORY_ID_TO_NAME:
     for r in all_5_dice_outcomes:
         eval_points.setdefault(cat_name, {})
         eval_points[cat_name][r] = Roll(r).eval_point(cat_name)
-        print cat_name, r, eval_points[cat_name][r] 
+        #print cat_name, r, eval_points[cat_name][r] 
 
 print 'length of dice_to_id', len(dice_to_id)
 print 'length of kept_to_id', len(kept_to_id)
@@ -86,4 +87,6 @@ for key in id_to_dice:
 for key in id_to_kept:
     #print key, kept_to_id[id_to_kept[key]]
     assert key == kept_to_id[id_to_kept[key]]
-                
+
+#from pprint import pprint
+#pprint(eval_points)

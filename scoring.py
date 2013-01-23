@@ -150,7 +150,7 @@ def eval_point_for_all():
     dice = range(1,7)
     for t in combinations_with_replacement(dice,5):
         r = Roll(t)
-        print t, r.eval_point('3K')  
+        #print t, r.eval_point('3K')  
                 
 if __name__ == '__main__':
     for c in ['1','2','3','4','5','6']:
